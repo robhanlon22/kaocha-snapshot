@@ -1,4 +1,4 @@
-name: tests
+name: Tests
 
 on:
   push:
@@ -11,11 +11,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: set up Clojure
+    - name: Cache M2 repository
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-m2-repository
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('deps.edn') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+    - name: Set up Clojure
       uses: DeLaGuardo/setup-clojure@3.0
       with:
         cli: "1.10.1.739"
-    - name: run tests
+    - name: Run tests
       run: bin/kaocha
       env:
         CI: "1"
