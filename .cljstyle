@@ -1,0 +1,7 @@
+{:files {:pattern #"\.(clj|edn)$"}
+ :rules {:indentation {:list-indent 1
+                       :indents     {p/defplugin [[:inner 0]]
+                                     wrap-run    [[:inner 0]]
+                                     config      [[:inner 0]]}}
+         :blank-lines {:padding-lines 1}
+         :namespaces  {:indent-size 1}}}

@@ -1,4 +1,5 @@
 #kaocha/v1
-{:tests [{:kaocha.testable/skip-add-classpath? true}]
+{:plugins [:kaocha.plugin/snapshot]
+ :tests [{:kaocha.testable/skip-add-classpath? true}]
  :reporter kaocha.report/documentation
  :kaocha.plugin.capture-output/capture-output? false}

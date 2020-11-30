@@ -1,24 +1,41 @@
 (ns kaocha.plugin.snapshot-test
   (:require
-   [clojure.test :refer [deftest is]]
+   [clojure.string :as str]
+   [clojure.test :as t :refer [deftest is]]
    [kaocha.api :as api]
    [kaocha.plugin :as plugin]
-   [kaocha.plugin.snapshot :as snapshot]))
-
-(defn run-plugin-hook
-  [hook init & extra-args]
-  (let [chain (plugin/load-all [:kaocha.plugin/snapshot])]
-    (apply plugin/run-hook* chain hook init extra-args)))
+   [kaocha.plugin.snapshot :as snapshot]
+   [kaocha.result :as result]
+   [matcher-combinators.test]
+   [spy.core :as spy]))
 
 (def config
-  {:kaocha/plugins [:kaocha.plugin/snapshot]
+  {:kaocha/plugins                               [:kaocha.plugin/snapshot]
+   :kaocha.plugin.randomize/randomize?           false
+   :kaocha.plugin.capture-output/capture-output? false
+   :kaocha.plugin.snapshot/path                  "dev-resources/fixtures"
    :kaocha/tests
-   [{:kaocha.testable/type :kaocha.type/clojure.test
-     :kaocha.testable/id :unit
-     :kaocha/ns-patterns ["-tests$"]
-     :kaocha/source-paths []
-     :kaocha/test-paths ["test"]
+   [{:kaocha.testable/type                :kaocha.type/clojure.test
+     :kaocha.testable/id                  :unit
+     :kaocha/ns-patterns                  [".*-fixture$"]
+     :kaocha/source-paths                 []
+     :kaocha/test-paths                   ["test"]
      :kaocha.testable/skip-add-classpath? true}]})
 
+(deftest match-snapshot-test
+  (is (match-snapshot? {:foo "bar"})))
+
+(defn correct-message?
+  [{:keys [message]}]
+  (and message (str/starts-with? message "The actual result did not match the snapshot.")))
+
 (deftest snapshot-test
-  (api/run config))
+  (with-redefs [t/do-report (spy/spy t/do-report)]
+    (let [result (api/run config)]
+      (is (match? #:kaocha.result{:count   2
+                                  :error   0
+                                  :fail    1
+                                  :pass    1
+                                  :pending 0}
+                  (result/testable-totals result))))
+    (is (spy/call-matching? t/do-report #(some correct-message? %)))))

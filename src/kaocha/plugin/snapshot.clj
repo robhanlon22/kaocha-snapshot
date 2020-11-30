@@ -2,23 +2,29 @@
   (:require
    [clojure.edn :as edn]
    [clojure.java.io :as io]
-   [clojure.pprint :as pp]
    [clojure.string :as str]
    [clojure.test :as t :refer [is]]
-   [kaocha.plugin :as p])
+   [kaocha.plugin :refer [defplugin]]
+   [kaocha.testable :as testable]
+   [puget.printer :as puget])
   (:import
    (java.io
-    PushbackReader)))
+    PushbackReader)
+   (java.nio.file
+    Paths)))
 
-(def ^:dynamic *testable-id*)
+(def ^:private default-path
+  "dev-resources/snapshots")
+
+(def ^:dynamic *counter_* nil)
 
 (defn pathify
   [testable-id])
 
 (defn read-edn
-  [file]
-  (edn/read {:readers *data-readers*}
-            (PushbackReader. (io/reader file))))
+  [readable]
+  (with-open [reader (PushbackReader. (io/reader readable))]
+    (edn/read {:readers *data-readers*} reader)))
 
 (defn message
   [file-path]
@@ -28,24 +34,33 @@ snapshot, first delete the following file, then rerun the test:
 %s"
    file-path))
 
+(defn file-path
+  []
+  (let [id       (:kaocha.testable/id testable/*current-testable*)
+        cleaned  (-> (str id)
+                     (str/replace "-" "_")
+                     (str/replace "." "/")
+                     (str/replace #"[^\w/]" ""))
+        path     (:kaocha.plugin.snapshot/path testable/*config*)
+        filename (format "%s_%s.edn" cleaned @*counter_*)]
+    (str path "/" filename)))
+
 (defmethod t/assert-expr 'match-snapshot?
   [msg form]
-  `(let [value#         ~(second form)
-         snapshot-path# (-> (str ~`*testable-id*)
-                            (str/replace "-" "_")
-                            (str/replace "." "/")
-                            (str/replace #"[^\w/]" ""))
-         resource-path# (str "snapshots/" snapshot-path# ".edn")
-         file-path#     (str "dev-resources/" resource-path#)]
-     (when-not (io/resource resource-path#)
+  `(let [value#     ~(second form)
+         file-path# (file-path)]
+     (swap! *counter_* inc)
+     (when-not (.exists (io/as-file file-path#))
        (io/make-parents file-path#)
-       (spit file-path# (with-out-str (pp/pprint value#)))
+       (spit file-path# (puget/pprint-str value#))
        (println "\n\n>>> Wrote snapshot to" file-path#))
-     (is (~'= (read-edn (io/resource resource-path#)) value#)
-         (or ~msg (message file-path#)))))
+     (let [snapshot# (read-edn file-path#)]
+       (is (~'= snapshot# value#) (or ~msg (message file-path#))))))
 
-(p/defplugin kaocha.plugin/snapshot
+(defplugin kaocha.plugin/snapshot
+  (config [config]
+    (update config :kaocha.plugin.snapshot/path #(or % default-path)))
   (wrap-run [run _test-plan]
     (fn [testable test-plan]
-      (binding [*testable-id* (:kaocha.testable/id testable)]
+      (binding [*counter_* (atom 0)]
         (run testable test-plan)))))
