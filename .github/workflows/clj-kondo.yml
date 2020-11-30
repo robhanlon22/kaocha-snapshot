@@ -27,6 +27,6 @@ jobs:
       with:
         cli: "1.10.1.739"
     - name: clj-kondo --lint
-      run: clojure -S:clj-kondo --lint src test
+      run: clojure -M:clj-kondo --lint src test
       env:
         CI: "1"

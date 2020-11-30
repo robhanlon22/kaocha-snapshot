@@ -27,6 +27,6 @@ jobs:
       with:
         cli: "1.10.1.739"
     - name: cljstyle check
-      run: clojure -S:cljstyle check --report
+      run: clojure -M:cljstyle check --report
       env:
         CI: "1"
