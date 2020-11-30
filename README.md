@@ -1,5 +1,7 @@
 # kaocha-snapshot
 
+![Kaocha](https://github.com/robhanlon22/kaocha-snapshot/workflows/Kaocha/badge.svg)
+
 Snapshot testing for Kaocha.
 
 ## Usage
