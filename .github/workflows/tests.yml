@@ -1,4 +1,4 @@
-name: Kaocha
+name: Tests
 
 on:
   push:
