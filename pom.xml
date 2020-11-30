@@ -30,6 +30,11 @@
       <artifactId>clojure</artifactId>
       <version>1.10.1</version>
     </dependency>
+    <dependency>
+      <groupId>lambdaisland</groupId>
+      <artifactId>kaocha</artifactId>
+      <version>1.0.732</version>
+    </dependency>
   </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -38,10 +43,6 @@
     <repository>
       <id>clojars</id>
       <url>https://repo.clojars.org/</url>
-    </repository>
-    <repository>
-      <id>sonatype</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
     </repository>
   </repositories>
   <distributionManagement>

@@ -1,6 +1,6 @@
 # kaocha-snapshot
 
-FIXME: my new library.
+Snapshot testing for Kaocha.
 
 ## Usage
 
@@ -29,7 +29,7 @@ Deploy it to Clojars -- needs `CLOJARS_USERNAME` and `CLOJARS_PASSWORD` environm
 
 ## License
 
-Copyright © 2020 Root
+Copyright © 2020 Rob Hanlon
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
