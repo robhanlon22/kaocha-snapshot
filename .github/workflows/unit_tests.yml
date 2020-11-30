@@ -26,7 +26,7 @@ jobs:
       uses: DeLaGuardo/setup-clojure@3.0
       with:
         cli: "1.10.1.739"
-    - name: Run tests
+    - name: Kaocha
       run: bin/kaocha
       env:
         CI: "1"

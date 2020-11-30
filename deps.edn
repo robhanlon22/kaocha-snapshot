@@ -14,7 +14,7 @@
                :tag     "0.14.0"
                :sha     "3f3401ce3ac513d8670b4e36c61b842351916905"}}
              :main-opts ["-m" "cljstyle.main"]}
-  :clj-kondo {:extra-deps {clj-kondo {:mvn/version "RELEASE"}}
+  :clj-kondo {:extra-deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}
               :main-opts  ["-m" "clj-kondo.main"]}
   :test     {:main-opts ["-m" "kaocha.runner"]}
   :jar      {:extra-deps {seancorfield/depstar {:mvn/version "1.1.128"}}

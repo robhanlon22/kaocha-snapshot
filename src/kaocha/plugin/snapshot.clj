@@ -14,14 +14,14 @@
 (def default-path
   "dev-resources/snapshots")
 
-(def ^:private ^:dynamic *counter_* nil)
+(def ^:dynamic *counter_* nil)
 
-(defn ^:private read-edn
+(defn read-edn
   [readable]
   (with-open [reader (PushbackReader. (io/reader readable))]
     (edn/read {:readers *data-readers*} reader)))
 
-(defn ^:private message
+(defn message
   [file-path]
   (format
    "The actual result did not match the snapshot. If you'd like to update the
@@ -29,7 +29,7 @@ snapshot, first delete the following file, then rerun the test:
 %s"
    file-path))
 
-(defn ^:private file-path
+(defn file-path
   []
   (let [id       (:kaocha.testable/id testable/*current-testable*)
         cleaned  (-> (str id)
