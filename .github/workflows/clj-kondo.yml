@@ -1,4 +1,4 @@
-name: cljstyle
+name: clj-kondo
 
 on:
   push:
