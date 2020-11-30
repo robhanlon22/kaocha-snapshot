@@ -1,0 +1,11 @@
+repos:
+  - repo: local
+    hooks:
+      - id: cljstyle
+        name: cljstyle
+        description: This hook runs cljstyle fix on applicable files.
+        entry: clojure -M:cljstyle fix
+        language: system
+        types: [file]
+        require_serial: true
+        files: \.(clj|edn)$
