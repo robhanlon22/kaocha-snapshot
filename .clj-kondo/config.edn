@@ -1,0 +1,6 @@
+{:output  {:progress true}
+ :lint-as {kaocha.plugin/defplugin clj-kondo.lint-as/def-catch-all}
+ :linters {:unresolved-symbol
+           {:level   :error
+            :exclude [(clojure.test/are [match? match-with? match-snapshot?])
+                      (clojure.test/is [match? match-with match-snapshot?])]}}}

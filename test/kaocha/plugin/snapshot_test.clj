@@ -3,8 +3,7 @@
    [clojure.string :as str]
    [clojure.test :as t :refer [deftest is]]
    [kaocha.api :as api]
-   [kaocha.plugin :as plugin]
-   [kaocha.plugin.snapshot :as snapshot]
+   [kaocha.plugin.snapshot]
    [kaocha.result :as result]
    [matcher-combinators.test]
    [spy.core :as spy]))

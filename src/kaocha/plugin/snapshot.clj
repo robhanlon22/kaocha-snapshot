@@ -9,24 +9,19 @@
    [puget.printer :as puget])
   (:import
    (java.io
-    PushbackReader)
-   (java.nio.file
-    Paths)))
+    PushbackReader)))
 
-(def ^:private default-path
+(def default-path
   "dev-resources/snapshots")
 
-(def ^:dynamic *counter_* nil)
+(def ^:private ^:dynamic *counter_* nil)
 
-(defn pathify
-  [testable-id])
-
-(defn read-edn
+(defn ^:private read-edn
   [readable]
   (with-open [reader (PushbackReader. (io/reader readable))]
     (edn/read {:readers *data-readers*} reader)))
 
-(defn message
+(defn ^:private message
   [file-path]
   (format
    "The actual result did not match the snapshot. If you'd like to update the
@@ -34,7 +29,7 @@ snapshot, first delete the following file, then rerun the test:
 %s"
    file-path))
 
-(defn file-path
+(defn ^:private file-path
   []
   (let [id       (:kaocha.testable/id testable/*current-testable*)
         cleaned  (-> (str id)

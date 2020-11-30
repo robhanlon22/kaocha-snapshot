@@ -4,8 +4,14 @@ repos:
       - id: cljstyle
         name: cljstyle
         description: This hook runs cljstyle fix on applicable files.
-        entry: clojure -M:cljstyle fix
+        entry: cljstyle fix
         language: system
         types: [file]
-        require_serial: true
         files: \.(clj|edn)$
+      - id: clj-kondo
+        name: clj-kondo
+        description: This hook runs clj-kondo fix on applicable files.
+        entry: clj-kondo fix
+        language: system
+        types: [file]
+        files: \.clj$
