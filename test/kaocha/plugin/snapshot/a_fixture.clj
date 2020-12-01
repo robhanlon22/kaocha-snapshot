@@ -6,4 +6,4 @@
   (is (match-snapshot? {:foo "bar"})))
 
 (deftest failure-test
-  (is (match-snapshot? {:ham "eggs"})))
+  (is (match-snapshot? {:squid "ink"})))

@@ -12,7 +12,7 @@
   {:kaocha/plugins                               [:kaocha.plugin/snapshot]
    :kaocha.plugin.randomize/randomize?           false
    :kaocha.plugin.capture-output/capture-output? false
-   :kaocha.plugin.snapshot/base-path             "dev-resources/fixtures"
+   :kaocha.plugin.snapshot/base-path             "dev-resources/fixtures/snapshots"
    :kaocha/tests
    [{:kaocha.testable/type                :kaocha.type/clojure.test
      :kaocha.testable/id                  :unit

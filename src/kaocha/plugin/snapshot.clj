@@ -1,8 +1,7 @@
 (ns kaocha.plugin.snapshot
   (:require
    [kaocha.plugin :refer [defplugin]]
-   [kaocha.plugin.snapshot.assert :as assert]
-   [kaocha.testable :as testable]))
+   [kaocha.plugin.snapshot.assert :as assert]))
 
 (def default-path
   "dev-resources/snapshots")
@@ -13,6 +12,6 @@
   (wrap-run [run _test-plan]
     (fn [testable test-plan]
       (let [id        (:kaocha.testable/id testable)
-            base-path (::base-path testable/*config*)]
+            base-path (::base-path test-plan)]
         (assert/with-context id base-path
           (run testable test-plan))))))
