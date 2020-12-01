@@ -1,6 +1,7 @@
-{:files {:pattern #"\.(clj|edn)$"}
+{:files {:pattern #"\.(clj|edn)$|^.cljstyle$"}
  :rules {:indentation {:list-indent 1
-                       :indents     {p/defplugin         [[:inner 0]]
+                       :indents     {s/fdef              [[:inner 0]]
+                                     p/defplugin         [[:inner 0]]
                                      wrap-run            [[:inner 0]]
                                      config              [[:inner 0]]
                                      assert/with-context [[:inner 0]]}}
