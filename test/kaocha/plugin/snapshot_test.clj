@@ -12,7 +12,8 @@
   {:kaocha/plugins                               [:kaocha.plugin/snapshot]
    :kaocha.plugin.randomize/randomize?           false
    :kaocha.plugin.capture-output/capture-output? false
-   :kaocha.plugin.snapshot/base-path             "dev-resources/fixtures/snapshots"
+   :kaocha.plugin.snapshot/base-path
+   "dev-resources/fixtures/snapshots"
    :kaocha/tests
    [{:kaocha.testable/type                :kaocha.type/clojure.test
      :kaocha.testable/id                  :unit
@@ -26,7 +27,9 @@
 
 (defn correct-message?
   [{:keys [message]}]
-  (and message (str/starts-with? message "The actual result did not match the snapshot.")))
+  (and message
+       (str/starts-with? message
+                         "The actual result did not match the snapshot.")))
 
 (deftest snapshot-test
   (with-redefs [t/do-report (spy/spy t/do-report)]

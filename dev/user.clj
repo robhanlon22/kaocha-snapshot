@@ -1,15 +1,22 @@
 (ns user
   (:require
    [clojure.tools.namespace.repl :as namespace.repl]
-   [kaocha.repl]))
+   [kaocha.repl]
+   [orchestra.spec.test :as orchestra]))
+
+(defn refresh
+  [f]
+  (let [result (f)]
+    (orchestra/instrument)
+    result))
 
 (defn r
-  []
-  (namespace.repl/refresh))
+  [& args]
+  (refresh #(apply namespace.repl/refresh args)))
 
 (defn ra
-  []
-  (namespace.repl/refresh-all))
+  [& args]
+  (refresh #(apply namespace.repl/refresh-all args)))
 
 (defn refresh-then
   [f]
