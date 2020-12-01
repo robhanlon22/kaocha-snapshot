@@ -1,6 +1,6 @@
 # kaocha-snapshot
 
-![Kaocha](https://github.com/robhanlon22/kaocha-snapshot/workflows/Kaocha/badge.svg)
+[![ci](https://github.com/robhanlon22/kaocha-snapshot/workflows/ci/badge.svg)](https://github.com/robhanlon22/kaocha-snapshot/actions?query=workflow%3Aci) [![codecov](https://codecov.io/gh/robhanlon22/kaocha-snapshot/branch/main/graph/badge.svg?token=l4F8aSFIyH)](https://codecov.io/gh/robhanlon22/kaocha-snapshot)
 
 Snapshot testing for Kaocha.
 
