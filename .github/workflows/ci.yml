@@ -26,6 +26,7 @@ jobs:
         with:
           cli: "1.10.1.739"
       - run: bin/kaocha
+      - uses: codecov/codecov-action@v1.0.15
 
   cljstyle:
     runs-on: ubuntu-latest

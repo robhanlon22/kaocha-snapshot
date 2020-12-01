@@ -5,11 +5,12 @@
  :aliases
  {:dev       {:extra-paths ["dev" "test" "dev-resources"]
               :extra-deps
-              {org.clojure/test.check      {:mvn/version "1.0.0"}
-               orchestra/orchestra         {:mvn/version "2020.09.18-1"}
-               nubank/matcher-combinators  {:mvn/version "0.7.0"}
-               org.clojure/tools.namespace {:mvn/version "1.0.0"}
-               tortue/spy                  {:mvn/version "2.4.0"}}}
+              {org.clojure/test.check        {:mvn/version "1.0.0"}
+               orchestra/orchestra           {:mvn/version "2020.09.18-1"}
+               nubank/matcher-combinators    {:mvn/version "0.7.0"}
+               org.clojure/tools.namespace   {:mvn/version "1.0.0"}
+               tortue/spy                    {:mvn/version "2.4.0"}
+               lambdaisland/kaocha-cloverage {:mvn/version "1.0.75"}}}
   :cljstyle  {:extra-deps
               {mvxcvi/cljstyle
                {:git/url "https://github.com/greglook/cljstyle.git"
