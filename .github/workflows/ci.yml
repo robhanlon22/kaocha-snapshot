@@ -16,9 +16,10 @@ jobs:
           cache-name: cache
         with:
           path: |
-            ~/.m2
+            ~/.cache/pip
             ~/.cache/pre-commit
             ~/.gitlibs
+            ~/.m2
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('deps.edn', '.pre-commit-config.yaml') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
