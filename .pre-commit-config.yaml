@@ -1,17 +1,34 @@
+---
+default_language_version:
+  node: 12.16.3
 repos:
   - repo: local
     hooks:
       - id: cljstyle
         name: cljstyle
-        description: This hook runs cljstyle fix on applicable files.
-        entry: cljstyle fix
+        description: cljstyle
+        entry: clojure -M:cljstyle fix --report
         language: system
         types: [file]
-        files: \.(clj|edn)$
+        files: \.(clj|edn|cljstyle)$
+        require_serial: true
       - id: clj-kondo
         name: clj-kondo
-        description: This hook runs clj-kondo fix on applicable files.
-        entry: clj-kondo fix
+        description: clj-kondo
+        entry: clojure -M:clj-kondo
         language: system
         types: [file]
         files: \.clj$
+        require_serial: true
+      - id: kaocha
+        name: kaocha
+        entry: bin/kaocha
+        language: system
+        types: [file]
+        always_run: true
+        pass_filenames: false
+        require_serial: true
+  - repo: https://github.com/prettier/prettier
+    rev: 2.0.5
+    hooks:
+      - id: prettier
