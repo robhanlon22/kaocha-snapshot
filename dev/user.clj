@@ -3,24 +3,25 @@
    [clojure.tools.namespace.repl :as namespace.repl]
    [kaocha.repl]))
 
-(defn refresh
+(defn r
   []
   (namespace.repl/refresh))
 
-(defn refresh-all
+(defn ra
   []
   (namespace.repl/refresh-all))
 
-(defn run-tests
-  [& args]
-  (let [result (refresh)]
+(defn refresh-then
+  [f]
+  (let [result (r)]
     (if (= result :ok)
-      (apply kaocha.repl/run args)
+      (f)
       result)))
 
-(defn run-all-tests
+(defn t
   [& args]
-  (let [result (refresh)]
-    (if (= result :ok)
-      (apply kaocha.repl/run-all args)
-      result)))
+  (refresh-then #(apply kaocha.repl/run args)))
+
+(defn ta
+  [& args]
+  (refresh-then #(apply kaocha.repl/run-all args)))
