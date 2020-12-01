@@ -11,3 +11,4 @@
 .hg/
 /.clj-kondo/.cache
 /coverage
+Brewfile.lock.json

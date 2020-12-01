@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+brew bundle
+
+pre-commit install
+pre-commit install --hook-type pre-push
