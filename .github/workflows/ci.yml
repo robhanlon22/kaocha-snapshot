@@ -65,7 +65,6 @@ jobs:
       - uses: DeLaGuardo/setup-clojure@3.0
         with:
           cli: "1.10.1.739"
-      - uses: actions/setup-python@v2
       - run: bin/clj-kondo --lint .
 
   check:
