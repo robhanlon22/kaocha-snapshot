@@ -1,7 +1,8 @@
 #kaocha/v1
 {:plugins [:kaocha.plugin/snapshot
            :kaocha.plugin/orchestra
-           :kaocha.plugin/cloverage]
+           :kaocha.plugin/cloverage
+           :kaocha.plugin/profiling]
 
  :cloverage/opts {:output   "coverage"
                   :html?    false
