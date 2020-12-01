@@ -13,14 +13,16 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
+          env:
+            cache_name: kaocha
           path: |
             ~/.cache/pip
             ~/.cache/pre-commit
             ~/.gitlibs
             ~/.m2
-          key: ${{ runner.os }}-${{ github.job }}-${{ hashFiles('deps.edn', '.pre-commit-config.yaml') }}
+          key: ${{ runner.os }}-${{ env.cache_name }}-${{ hashFiles('deps.edn', '.pre-commit-config.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-${{ github.job }}-
+            ${{ runner.os }}-${{ env.cache_name }}-
             ${{ runner.os }}-
       - uses: DeLaGuardo/setup-clojure@3.0
         with:
@@ -36,14 +38,16 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
+          env:
+            cache_name: cljstyle
           path: |
             ~/.cache/pip
             ~/.cache/pre-commit
             ~/.gitlibs
             ~/.m2
-          key: ${{ runner.os }}-${{ github.job }}-${{ hashFiles('deps.edn', '.pre-commit-config.yaml') }}
+          key: ${{ runner.os }}-${{ env.cache_name }}-${{ hashFiles('deps.edn', '.pre-commit-config.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-${{ github.job }}-
+            ${{ runner.os }}-${{ env.cache_name }}-
             ${{ runner.os }}-
       - uses: DeLaGuardo/setup-clojure@3.0
         with:
@@ -59,14 +63,16 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
+          env:
+            cache_name: clj-kondo
           path: |
             ~/.cache/pip
             ~/.cache/pre-commit
             ~/.gitlibs
             ~/.m2
-          key: ${{ runner.os }}-${{ github.job }}-${{ hashFiles('deps.edn', '.pre-commit-config.yaml') }}
+          key: ${{ runner.os }}-${{ env.cache_name }}-${{ hashFiles('deps.edn', '.pre-commit-config.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-${{ github.job }}-
+            ${{ runner.os }}-${{ env.cache_name }}-
             ${{ runner.os }}-
       - uses: DeLaGuardo/setup-clojure@3.0
         with:
@@ -82,14 +88,16 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
+          env:
+            cache-name: check
           path: |
             ~/.cache/pip
             ~/.cache/pre-commit
             ~/.gitlibs
             ~/.m2
-          key: ${{ runner.os }}-${{ github.job }}-${{ hashFiles('deps.edn', '.pre-commit-config.yaml') }}
+          key: ${{ runner.os }}-${{ env.cache_name }}-${{ hashFiles('deps.edn', '.pre-commit-config.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-${{ github.job }}-
+            ${{ runner.os }}-${{ env.cache_name }}-
             ${{ runner.os }}-
       - uses: DeLaGuardo/setup-clojure@3.0
         with:
@@ -105,14 +113,16 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
+          env:
+            cache-name: prettier
           path: |
             ~/.cache/pip
             ~/.cache/pre-commit
             ~/.gitlibs
             ~/.m2
-          key: ${{ runner.os }}-${{ github.job }}-${{ hashFiles('deps.edn', '.pre-commit-config.yaml') }}
+          key: ${{ runner.os }}-${{ env.cache_name }}-${{ hashFiles('deps.edn', '.pre-commit-config.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-${{ github.job }}-
+            ${{ runner.os }}-${{ env.cache_name }}-
             ${{ runner.os }}-
       - uses: DeLaGuardo/setup-clojure@3.0
         with:
