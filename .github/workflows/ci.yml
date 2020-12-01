@@ -16,21 +16,16 @@ jobs:
           cache-name: kaocha
         with:
           path: |
-            ~/.cache/pip
-            ~/.cache/pre-commit
             ~/.gitlibs
             ~/.m2
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('deps.edn', '.pre-commit-config.yaml') }}
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('deps.edn') }}
           restore-keys: |
             ${{ runner.os }}-${{ env.cache-name }}-
             ${{ runner.os }}-
       - uses: DeLaGuardo/setup-clojure@3.0
         with:
           cli: "1.10.1.739"
-      - uses: actions/setup-python@v2
-      - uses: pre-commit/action@v2.0.0
-        with:
-          extra_args: kaocha --all-files
+      - run: bin/kaocha
 
   cljstyle:
     runs-on: ubuntu-latest
@@ -41,21 +36,16 @@ jobs:
           cache-name: cljstyle
         with:
           path: |
-            ~/.cache/pip
-            ~/.cache/pre-commit
             ~/.gitlibs
             ~/.m2
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('deps.edn', '.pre-commit-config.yaml') }}
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('deps.edn') }}
           restore-keys: |
             ${{ runner.os }}-${{ env.cache-name }}-
             ${{ runner.os }}-
       - uses: DeLaGuardo/setup-clojure@3.0
         with:
           cli: "1.10.1.739"
-      - uses: actions/setup-python@v2
-      - uses: pre-commit/action@v2.0.0
-        with:
-          extra_args: cljstyle --all-files
+      - run: bin/cljstyle check --report
 
   clj-kondo:
     runs-on: ubuntu-latest
@@ -66,11 +56,9 @@ jobs:
           cache-name: clj-kondo
         with:
           path: |
-            ~/.cache/pip
-            ~/.cache/pre-commit
             ~/.gitlibs
             ~/.m2
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('deps.edn', '.pre-commit-config.yaml') }}
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('deps.edn') }}
           restore-keys: |
             ${{ runner.os }}-${{ env.cache-name }}-
             ${{ runner.os }}-
@@ -78,9 +66,7 @@ jobs:
         with:
           cli: "1.10.1.739"
       - uses: actions/setup-python@v2
-      - uses: pre-commit/action@v2.0.0
-        with:
-          extra_args: clj-kondo --all-files
+      - run: bin/clj-kondo --lint .
 
   check:
     runs-on: ubuntu-latest
@@ -95,17 +81,14 @@ jobs:
             ~/.cache/pre-commit
             ~/.gitlibs
             ~/.m2
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('deps.edn', '.pre-commit-config.yaml') }}
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('deps.edn') }}
           restore-keys: |
             ${{ runner.os }}-${{ env.cache-name }}-
             ${{ runner.os }}-
       - uses: DeLaGuardo/setup-clojure@3.0
         with:
           cli: "1.10.1.739"
-      - uses: actions/setup-python@v2
-      - uses: pre-commit/action@v2.0.0
-        with:
-          extra_args: check --all-files
+      - run: bin/check
 
   prettier:
     runs-on: ubuntu-latest
@@ -118,15 +101,10 @@ jobs:
           path: |
             ~/.cache/pip
             ~/.cache/pre-commit
-            ~/.gitlibs
-            ~/.m2
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('deps.edn', '.pre-commit-config.yaml') }}
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('.pre-commit-config.yaml') }}
           restore-keys: |
             ${{ runner.os }}-${{ env.cache-name }}-
             ${{ runner.os }}-
-      - uses: DeLaGuardo/setup-clojure@3.0
-        with:
-          cli: "1.10.1.739"
       - uses: actions/setup-python@v2
       - uses: pre-commit/action@v2.0.0
         with:

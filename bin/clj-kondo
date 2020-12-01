@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if hash clj-kondo; then
+  clj-kondo "$@"
+else
+  clojure -M:dev:clj-kondo "$@"
+fi

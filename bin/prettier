@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+npx -p 'prettier@2.0.5' prettier "$@"

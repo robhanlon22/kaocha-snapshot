@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if hash cljstyle; then
+  cljstyle "$@"
+else
+  clojure -M:dev:cljstyle "$@"
+fi
