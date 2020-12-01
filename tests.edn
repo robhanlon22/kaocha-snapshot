@@ -8,7 +8,10 @@
           :kaocha.filter/skip-meta             [:no-gen]
           :kaocha/source-paths                 ["src"]
           :kaocha.spec.test.check/syms         :all-fdefs
-          :kaocha.testable/skip-add-classpath? true}]
+          :kaocha.testable/skip-add-classpath? true
+          :clojure.spec.test.check/opts
+          #profile {:default {:num-tests 10}}}]
+
 
  :reporter kaocha.report/documentation
 
