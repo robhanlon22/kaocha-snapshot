@@ -1,6 +1,6 @@
-# kaocha-snapshot
+# krispie
 
-[![ci](https://github.com/robhanlon22/kaocha-snapshot/workflows/ci/badge.svg)](https://github.com/robhanlon22/kaocha-snapshot/actions?query=workflow%3Aci) [![codecov](https://codecov.io/gh/robhanlon22/kaocha-snapshot/branch/main/graph/badge.svg?token=l4F8aSFIyH)](https://codecov.io/gh/robhanlon22/kaocha-snapshot)
+[![ci](https://github.com/robhanlon22/krispie/workflows/ci/badge.svg)](https://github.com/robhanlon22/krispie/actions?query=workflow%3Aci) [![codecov](https://codecov.io/gh/robhanlon22/krispie/branch/main/graph/badge.svg?token=l4F8aSFIyH)](https://codecov.io/gh/robhanlon22/krispie)
 
 Snapshot testing for Kaocha.
 
@@ -10,7 +10,7 @@ FIXME: write usage documentation!
 
 Invoke a library API function from the command-line:
 
-    $ clojure -X robhanlon22.kaocha-snapshot/foo :a 1 :b '"two"'
+    $ clojure -X robhanlon22.krispie/foo :a 1 :b '"two"'
     {:a 1, :b "two"} "Hello, World!"
 
 Run the project's tests (they'll fail until you edit them):
