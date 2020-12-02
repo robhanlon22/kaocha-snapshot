@@ -1,18 +1,18 @@
-(ns kaocha.plugin.snapshot-test
+(ns kaocha.plugin.krispie-test
   (:require
    [clojure.string :as str]
    [clojure.test :as t :refer [deftest is]]
    [kaocha.api :as api]
-   [kaocha.plugin.snapshot]
+   [kaocha.plugin.krispie]
    [kaocha.result :as result]
    [matcher-combinators.test]
    [spy.core :as spy]))
 
 (def config
-  {:kaocha/plugins                               [:kaocha.plugin/snapshot]
+  {:kaocha/plugins                               [:kaocha.plugin/krispie]
    :kaocha.plugin.randomize/randomize?           false
    :kaocha.plugin.capture-output/capture-output? false
-   :kaocha.plugin.snapshot/base-path
+   :kaocha.plugin.krispie/base-path
    "dev-resources/fixtures/snapshots"
    :kaocha/tests
    [{:kaocha.testable/type                :kaocha.type/clojure.test
@@ -31,7 +31,7 @@
        (str/starts-with? message
                          "The actual result did not match the snapshot.")))
 
-(deftest snapshot-test
+(deftest krispie-test
   (with-redefs [t/do-report (spy/spy t/do-report)]
     (let [result (api/run config)]
       (is (match? #:kaocha.result{:count   2

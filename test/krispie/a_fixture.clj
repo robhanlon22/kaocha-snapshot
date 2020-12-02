@@ -1,6 +1,7 @@
-(ns kaocha.plugin.snapshot.a-fixture
+(ns krispie.a-fixture
   (:require
-   [clojure.test :as t :refer [deftest is]]))
+   [clojure.test :as t :refer [deftest is]]
+   [krispie]))
 
 (deftest success-test
   (is (match-snapshot? {:foo "bar"})))

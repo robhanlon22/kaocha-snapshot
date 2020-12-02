@@ -1,9 +1,9 @@
 {:files {:pattern #"\.(clj|edn)$|^.cljstyle$"}
  :rules {:indentation {:list-indent 1
-                       :indents     {s/fdef              [[:inner 0]]
-                                     p/defplugin         [[:inner 0]]
-                                     wrap-run            [[:inner 0]]
-                                     config              [[:inner 0]]
-                                     assert/with-context [[:inner 0]]}}
+                       :indents     {s/fdef               [[:inner 0]]
+                                     p/defplugin          [[:inner 0]]
+                                     wrap-run             [[:inner 0]]
+                                     config               [[:inner 0]]
+                                     krispie/with-context [[:inner 0]]}}
          :blank-lines {:padding-lines 1}
          :namespaces  {:indent-size 1}}}

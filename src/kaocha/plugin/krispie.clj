@@ -1,9 +1,9 @@
-(ns kaocha.plugin.snapshot
+(ns kaocha.plugin.krispie
   (:require
    [clojure.spec.alpha :as s]
    [kaocha.plugin :refer [defplugin]]
-   [kaocha.plugin.snapshot.assert :as assert]
-   [kaocha.specs]))
+   [kaocha.specs]
+   [krispie]))
 
 (def default-path
   "dev-resources/snapshots")
@@ -26,12 +26,12 @@
   :args (s/cat :config ::input-config)
   :ret  ::config)
 
-(defn with-assert-context
+(defn with-context
   [run _test-plan]
   (fn [testable test-plan]
     (let [id        (:kaocha.testable/id testable)
           base-path (::base-path test-plan)]
-      (assert/with-context id base-path
+      (krispie/with-context id base-path
         (run testable test-plan)))))
 
 (s/def ::run
@@ -45,8 +45,8 @@
 ;;                :test-plan :kaocha/test-plan)
 ;;   :ret  ::run)
 
-(defplugin kaocha.plugin/snapshot
+(defplugin kaocha.plugin/krispie
   (config [config]
     (ensure-base-path config))
   (wrap-run [run test-plan]
-    (with-assert-context run test-plan)))
+    (with-context run test-plan)))

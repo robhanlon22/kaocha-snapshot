@@ -1,4 +1,4 @@
-(ns kaocha.plugin.snapshot.assert
+(ns krispie
   (:require
    [clojure.edn :as edn]
    [clojure.java.io :as io]

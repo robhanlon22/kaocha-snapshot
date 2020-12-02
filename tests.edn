@@ -1,5 +1,5 @@
 #kaocha/v1
-{:plugins [:kaocha.plugin/snapshot
+{:plugins [:kaocha.plugin/krispie
            :kaocha.plugin/orchestra
            :kaocha.plugin/cloverage
            :kaocha.plugin/profiling]
